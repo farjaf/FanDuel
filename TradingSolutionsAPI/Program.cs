@@ -1,6 +1,6 @@
-using TradingSolutions.Models;
-using TradingSolutions.Repositories;
-using TradingSolutions.Services;
+using TradingSolutionsCore.Models;
+using TradingSolutionsCore.Repositories;
+using TradingSolutionsCore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-﻿namespace TradingSolutions.Models
+﻿namespace TradingSolutionsCore.Models
 {
     public class Team
     {

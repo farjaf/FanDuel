@@ -1,6 +1,6 @@
-﻿using TradingSolutions.Models;
+﻿using TradingSolutionsCore.Models;
 
-namespace TradingSolutions.Services;
+namespace TradingSolutionsCore.Services;
 
 public interface IDepthChartService
 {

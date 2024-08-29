@@ -1,7 +1,7 @@
-﻿using TradingSolutions.Models;
-using TradingSolutions.Repositories;
+﻿using TradingSolutionsCore.Models;
+using TradingSolutionsCore.Repositories;
 
-namespace TradingSolutions.Services;
+namespace TradingSolutionsCore.Services;
 
 
 public class DepthChartService : IDepthChartService

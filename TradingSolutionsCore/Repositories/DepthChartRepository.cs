@@ -1,6 +1,6 @@
-﻿using TradingSolutions.Models;
+﻿using TradingSolutionsCore.Models;
 
-namespace TradingSolutions.Repositories
+namespace TradingSolutionsCore.Repositories
 {
     public class DepthChartRepository : IDepthChartRepository
     {

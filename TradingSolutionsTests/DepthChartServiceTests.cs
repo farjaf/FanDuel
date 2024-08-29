@@ -1,7 +1,7 @@
 using FluentAssertions;
-using TradingSolutions.Models;
-using TradingSolutions.Services;
-using TradingSolutions.Repositories;
+using TradingSolutionsCore.Models;
+using TradingSolutionsCore.Repositories;
+using TradingSolutionsCore.Services;
 
 namespace TradingSolutionsTests;
 
@@ -23,7 +23,7 @@ public class DepthChartServiceTests
     public void AddPlayer_ShouldAddPlayerAtCorrectPositionInNFL()
     {
         // Arrange
-        var player = new Player { Number = 12, Name = "Tom Brady", Position = "QB" };
+        var player = new Player { Number = 12, Name = "Tom Brady"};
 
         // Act
         _depthChartService.AddPlayer(Team, "QB", player, 0);
@@ -37,8 +37,8 @@ public class DepthChartServiceTests
     public void GetBackups_ShouldReturnCorrectBackups_WhenPlayerHasBackups()
     {
         // Arrange
-        var tomBrady = new Player { Number = 12, Name = "Tom Brady", Position = "QB" };
-        var blaineGabbert = new Player { Number = 11, Name = "Blaine Gabbert", Position = "QB" };
+        var tomBrady = new Player { Number = 12, Name = "Tom Brady" };
+        var blaineGabbert = new Player { Number = 11, Name = "Blaine Gabbert" };
         _depthChartService.AddPlayer(Team, "QB", tomBrady, 0);
         _depthChartService.AddPlayer("Tampa Bay Buccaneers", "QB", blaineGabbert, 1);
 
@@ -54,7 +54,7 @@ public class DepthChartServiceTests
     public void RemovePlayer_ShouldRemovePlayerCorrectly()
     {
         // Arrange
-        var player = new Player { Number = 12, Name = "Tom Brady", Position = "QB" };
+        var player = new Player { Number = 12, Name = "Tom Brady" };
         _depthChartService.AddPlayer(Team, "QB", player, 0);
 
         // Act
@@ -70,9 +70,9 @@ public class DepthChartServiceTests
     public void AddPlayerToDepthChart_ShouldAddPlayerAtPositionDepth_AndShiftOthersDown()
     {
         // Arrange
-        var tomBrady = new Player { Number = 12, Name = "Tom Brady", Position = "QB" };
-        var kyleTrask = new Player { Number = 2, Name = "Kyle Trask", Position = "QB" };
-        var blaineGabbert = new Player { Number = 11, Name = "Blaine Gabbert", Position = "QB" };
+        var tomBrady = new Player { Number = 12, Name = "Tom Brady" };
+        var kyleTrask = new Player { Number = 2, Name = "Kyle Trask" };
+        var blaineGabbert = new Player { Number = 11, Name = "Blaine Gabbert" };
 
         _depthChartService.AddPlayer(Team, "QB", tomBrady, 0);
         _depthChartService.AddPlayer(Team, "QB", kyleTrask, 1);
@@ -91,7 +91,7 @@ public class DepthChartServiceTests
     public void AddPlayerToDepthChart_ShouldThrowArgumentOutOfRangeException_WhenPositionDepthIsInvalid()
     {
         // Arrange
-        var tomBrady = new Player { Number = 12, Name = "Tom Brady", Position = "QB" };
+        var tomBrady = new Player { Number = 12, Name = "Tom Brady" };
 
         // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(() => _depthChartService.AddPlayer(Team, "QB", tomBrady, -1));
@@ -103,13 +103,13 @@ public class DepthChartServiceTests
     public void GetFullDepthChart_ShouldReturnCompleteDepthChart()
     {
         // Arrange
-        var TomBrady = new Player { Number = 12, Name = "Tom Brady", Position = "QB" };
-        var BlaineGabbert = new Player { Number = 11, Name = "Blaine Gabbert", Position = "QB" };
-        var KyleTrask = new Player { Number = 2, Name = "Kyle Trask", Position = "QB" };
+        var TomBrady = new Player { Number = 12, Name = "Tom Brady" };
+        var BlaineGabbert = new Player { Number = 11, Name = "Blaine Gabbert" };
+        var KyleTrask = new Player { Number = 2, Name = "Kyle Trask" };
 
-        var MikeEvans = new Player { Number = 13, Name = "Mike Evans", Position = "LWR" };
-        var JaelonDarden = new Player { Number = 1, Name = "Jaelon Darden", Position = "LWR" };
-        var ScottMiller = new Player { Number = 10, Name = "Scott Miller", Position = "LWR" };
+        var MikeEvans = new Player { Number = 13, Name = "Mike Evans"};
+        var JaelonDarden = new Player { Number = 1, Name = "Jaelon Darden" };
+        var ScottMiller = new Player { Number = 10, Name = "Scott Miller" };
 
         _depthChartService.AddPlayer(Team, "QB", TomBrady, 0);
         _depthChartService.AddPlayer(Team, "QB", BlaineGabbert, 1);
@@ -140,7 +140,7 @@ public class DepthChartServiceTests
     public void RemoveNonExistentPlayer_ShouldReturnEmpty()
     {
         // Arrange
-        var player = new Player { Number = 99, Name = "Unknown Player", Position = "QB" };
+        var player = new Player { Number = 99, Name = "Unknown Player" };
         var expectedResult = new Player();
 
         // Act
@@ -154,7 +154,7 @@ public class DepthChartServiceTests
     public void GetBackups_ShouldReturnEmptyList_WhenNoBackupsExist()
     {
         // Arrange
-        var tomBrady = new Player { Number = 12, Name = "Tom Brady", Position = "QB" };
+        var tomBrady = new Player { Number = 12, Name = "Tom Brady" };
         _depthChartService.AddPlayer(Team, "QB", tomBrady, 0);
 
         // Act
@@ -168,7 +168,7 @@ public class DepthChartServiceTests
     public void GetBackups_ShouldReturnEmptyList_WhenPlayerNotInDepthChart()
     {
         // Arrange
-        var unknownPlayer = new Player { Number = 99, Name = "Unknown Player", Position = "QB" };
+        var unknownPlayer = new Player { Number = 99, Name = "Unknown Player" };
 
         // Act
         var backups = _depthChartService.GetBackups(Team, "QB", unknownPlayer);

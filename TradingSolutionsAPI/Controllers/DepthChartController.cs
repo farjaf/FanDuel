@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using TradingSolutions.Models;
-using TradingSolutions.Services;
+using TradingSolutionsCore.Models;
+using TradingSolutionsCore.Services;
 
 namespace TradingSolutionsAPI.Controllers
 {
