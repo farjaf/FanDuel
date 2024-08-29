@@ -4,11 +4,8 @@ namespace TradingSolutions.Services;
 
 public interface IDepthChartService
 {
-    void AddPlayerToDepthChart(string position, Player player, int? positionDepth = null);
-
-    Player RemovePlayerFromDepthChart(string position, Player player);
-
-    List<Player> GetBackups(string position, Player player);
-
-    Dictionary<string, List<Player>> GetFullDepthChart();
+    void AddPlayer(string teamName, string position, Player player, int? positionDepth);
+    Player RemovePlayer(string teamName, string position, Player player);
+    List<Player> GetBackups(string teamName, string position, Player player);
+    Dictionary<string, List<Player>> GetFullDepthChart(string teamName);
 }

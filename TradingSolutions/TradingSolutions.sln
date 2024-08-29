@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D6D19183-662
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSolutionsTests", "..\TradingSolutionsTests\TradingSolutionsTests.csproj", "{66BE0239-9CD9-4E41-ABFD-B58086098287}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingSolutionsAPI", "..\TradingSolutionsAPI\TradingSolutionsAPI.csproj", "{ECAC6249-E8CB-4B55-90B1-750A7EB840D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{66BE0239-9CD9-4E41-ABFD-B58086098287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66BE0239-9CD9-4E41-ABFD-B58086098287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66BE0239-9CD9-4E41-ABFD-B58086098287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECAC6249-E8CB-4B55-90B1-750A7EB840D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECAC6249-E8CB-4B55-90B1-750A7EB840D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECAC6249-E8CB-4B55-90B1-750A7EB840D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECAC6249-E8CB-4B55-90B1-750A7EB840D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{16E4826C-C184-4B1F-98B8-174CD1293D05} = {D6D19183-6628-4A88-9D89-CF9885B27B1F}
 		{66BE0239-9CD9-4E41-ABFD-B58086098287} = {D6D19183-6628-4A88-9D89-CF9885B27B1F}
+		{ECAC6249-E8CB-4B55-90B1-750A7EB840D0} = {D6D19183-6628-4A88-9D89-CF9885B27B1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86DC0194-5719-4196-BBD9-2756FAB2728A}

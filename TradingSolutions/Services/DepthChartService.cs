@@ -1,67 +1,35 @@
 ﻿using TradingSolutions.Models;
+using TradingSolutions.Repositories;
 
 namespace TradingSolutions.Services;
 
+
 public class DepthChartService : IDepthChartService
 {
-    private readonly Dictionary<string, List<Player>> _depthChart = new();
+    private readonly IDepthChartRepository _repository;
 
-    public void AddPlayerToDepthChart(string position, Player player, int? positionDepth = null)
+    public DepthChartService(IDepthChartRepository repository)
     {
-        if (!_depthChart.ContainsKey(position))
-        {
-            _depthChart[position] = [];
-        }
-
-        if (positionDepth.HasValue)
-        {
-            int depth = positionDepth.Value;
-
-            if (depth < 0 || depth > _depthChart[position].Count)
-            {
-                throw new ArgumentOutOfRangeException(nameof(positionDepth), "Position depth is out of range.");
-            }
-
-            // Insert the player at the specified depth, shifting others down
-            _depthChart[position].Insert(depth, player);
-        }
-        else
-        {
-            // Add the player to the end if no depth is specified
-            _depthChart[position].Add(player);
-        }
+        _repository = repository;
     }
 
-    public Player RemovePlayerFromDepthChart(string position, Player player)
+    public void AddPlayer(string teamName, string position, Player player, int? positionDepth)
     {
-        if (_depthChart.TryGetValue(position, out var players))
-        {
-            var playerToRemove = players.FirstOrDefault(p => p.Number == player.Number);
-            if (playerToRemove != null)
-            {
-                players.Remove(playerToRemove);
-                return playerToRemove;
-            }
-        }
-
-        return new Player();
+        _repository.AddPlayer(teamName, position, player, positionDepth);
     }
 
-    public List<Player> GetBackups(string position, Player player)
+    public Player RemovePlayer(string teamName, string position, Player player)
     {
-        if (_depthChart.TryGetValue(position, out var players))
-        {
-            var playerIndex = players.FindIndex(p => p.Number == player.Number);
-            if (playerIndex >= 0 && playerIndex < players.Count - 1)
-            {
-                return players.Skip(playerIndex + 1).ToList();
-            }
-        }
-        return [];
+        return _repository.RemovePlayer(teamName, position, player);
     }
 
-    public Dictionary<string, List<Player>> GetFullDepthChart()
+    public List<Player> GetBackups(string teamName, string position, Player player)
     {
-        return _depthChart;
+        return _repository.GetBackups(teamName, position, player);
+    }
+
+    public Dictionary<string, List<Player>> GetFullDepthChart(string teamName)
+    {
+        return _repository.GetFullDepthChart(teamName);
     }
 }
