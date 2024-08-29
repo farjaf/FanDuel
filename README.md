@@ -3,11 +3,12 @@
 ## Overview
 
 This project is a C# .NET application that manages the depth charts of NFL teams. It provides functionality to add, remove, and retrieve players from the depth chart based on their positions.
+Currently it only allows to add for NFL team Tampa Bay Buccaneers. However, the solution is supporing additional sports and additional teams and requires slight modification inside Program.cs in TradingSolutionsAPI to add more teams and sports.
 
 ## Prerequisites
 
 - .NET SDK (version 8.0 or higher)
-- A code editor like Visual Studio, Visual Studio Code, or Rider
+- Visual studio 2022 or higher
 
 ## How to Build and Run the Code
 
@@ -21,7 +22,7 @@ git clone https://github.com/farjaf/FanDuel.git
 
 ### 2. Build the Solution
 
-Navigate to the root directory of the solution and build the project:
+Open the solution (TradingSolutions.sln) in visual studio and build the project. 
 
 ```bash
 dotnet build
@@ -29,13 +30,27 @@ dotnet build
 
 ### 3. Run the Application
 
-To run the application, use the following command:
+Select TradingSolutionsAPI as startup project and run the project. It will open swagger as below:
 
-```bash
-dotnet run --project DepthChartManagement
-```
+![image](https://github.com/user-attachments/assets/685f51c6-8bf0-4c78-8c1d-aa0c2d31e6cc)
 
-This command will execute the main project and allow you to interact with the depth chart management system.
+The swagger API consists of 4 APIS
+
+- AddPlayer
+- RemovePlayer
+- GetBackups
+- GetFullDepthChart
+
+To Add Player to depth chart, add details for Tom Brady:
+
+![image](https://github.com/user-attachments/assets/d22e5fbf-ae53-4097-936a-0be009aa53eb)
+
+To get full depth chart for a given team:
+
+![image](https://github.com/user-attachments/assets/b560615b-6d1b-425b-ab71-d9a2243bc941)
+
+
+
 
 ### 4. Running Tests
 
@@ -45,4 +60,4 @@ Automated unit tests are included in the solution to verify the correctness of t
 dotnet test
 ```
 
-This command will run all the tests in the test project and display the results in the console.
+It can also be run from visual studio by selecting from menu Test -> Run All Tests
