@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSolutions", "TradingSolutions.csproj", "{16E4826C-C184-4B1F-98B8-174CD1293D05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D6D19183-6628-4A88-9D89-CF9885B27B1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingSolutionsTests", "..\TradingSolutionsTests\TradingSolutionsTests.csproj", "{66BE0239-9CD9-4E41-ABFD-B58086098287}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16E4826C-C184-4B1F-98B8-174CD1293D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E4826C-C184-4B1F-98B8-174CD1293D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E4826C-C184-4B1F-98B8-174CD1293D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E4826C-C184-4B1F-98B8-174CD1293D05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66BE0239-9CD9-4E41-ABFD-B58086098287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BE0239-9CD9-4E41-ABFD-B58086098287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BE0239-9CD9-4E41-ABFD-B58086098287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BE0239-9CD9-4E41-ABFD-B58086098287}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16E4826C-C184-4B1F-98B8-174CD1293D05} = {D6D19183-6628-4A88-9D89-CF9885B27B1F}
+		{66BE0239-9CD9-4E41-ABFD-B58086098287} = {D6D19183-6628-4A88-9D89-CF9885B27B1F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86DC0194-5719-4196-BBD9-2756FAB2728A}
+	EndGlobalSection
+EndGlobal
