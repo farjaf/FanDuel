@@ -13,21 +13,29 @@ public class DepthChartService : IDepthChartService
             _depthChart[position] = [];
         }
 
-        if (positionDepth is 0)
+        if (positionDepth.HasValue)
         {
-            _depthChart[position].Insert(0, player);
+            int depth = positionDepth.Value;
+
+            if (depth < 0 || depth > _depthChart[position].Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(positionDepth), "Position depth is out of range.");
+            }
+
+            // Insert the player at the specified depth, shifting others down
+            _depthChart[position].Insert(depth, player);
         }
         else
         {
+            // Add the player to the end if no depth is specified
             _depthChart[position].Add(player);
         }
     }
 
     public Player RemovePlayerFromDepthChart(string position, Player player)
     {
-        if (_depthChart.ContainsKey(position))
+        if (_depthChart.TryGetValue(position, out var players))
         {
-            var players = _depthChart[position];
             var playerToRemove = players.FirstOrDefault(p => p.Number == player.Number);
             if (playerToRemove != null)
             {
@@ -41,9 +49,8 @@ public class DepthChartService : IDepthChartService
 
     public List<Player> GetBackups(string position, Player player)
     {
-        if (_depthChart.ContainsKey(position))
+        if (_depthChart.TryGetValue(position, out var players))
         {
-            var players = _depthChart[position];
             var playerIndex = players.FindIndex(p => p.Number == player.Number);
             if (playerIndex >= 0 && playerIndex < players.Count - 1)
             {
