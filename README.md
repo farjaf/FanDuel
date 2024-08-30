@@ -32,22 +32,26 @@ dotnet build
 
 Select TradingSolutionsAPI as startup project and run the project. It will open swagger as below:
 
-![image](https://github.com/user-attachments/assets/685f51c6-8bf0-4c78-8c1d-aa0c2d31e6cc)
+![image](https://github.com/user-attachments/assets/1b571641-32f8-495b-96b1-1192fd9d946a)
+
+
 
 The swagger API consists of 4 APIS
 
-- AddPlayer
-- RemovePlayer
+- AddPlayerToDepthChart
+- RemovePlayerFromDepthChart
 - GetBackups
 - GetFullDepthChart
 
 To Add Player to depth chart, add details for Tom Brady:
 
-![image](https://github.com/user-attachments/assets/d22e5fbf-ae53-4097-936a-0be009aa53eb)
+![image](https://github.com/user-attachments/assets/3a04fe50-9198-42a0-abfe-080adf7bca78)
+
 
 To get full depth chart for a given team:
 
-![image](https://github.com/user-attachments/assets/b560615b-6d1b-425b-ab71-d9a2243bc941)
+![image](https://github.com/user-attachments/assets/bffc89e8-ecdd-4ce6-8c51-877e69b601fd)
+
 
 
 
