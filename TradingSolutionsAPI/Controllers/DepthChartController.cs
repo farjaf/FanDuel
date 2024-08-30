@@ -25,7 +25,7 @@ namespace TradingSolutionsAPI.Controllers
             return Ok(removedPlayer);
         }
 
-        [HttpGet("GetBackups")]
+        [HttpPost("GetBackups")]
         public IActionResult GetBackups(string position, Player player)
         {
             var backups = service.GetBackups(AppConstants.Teams.TampaBayBuccaneers, position, player);

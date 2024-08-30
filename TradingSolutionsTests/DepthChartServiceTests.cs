@@ -139,6 +139,9 @@ public class DepthChartServiceTests
     public void RemoveNonExistentPlayer_ShouldReturnEmpty()
     {
         // Arrange
+        var TomBrady = new Player { Number = 12, Name = "Tom Brady" };
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", TomBrady, 0);
+        
         var player = new Player { Number = 99, Name = "Unknown Player" };
         var expectedResult = new Player();
 

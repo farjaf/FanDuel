@@ -25,8 +25,13 @@ namespace TradingSolutionsCore.Repositories
             var depthChart = team.GetDepthChart(position);
             if (depthChart == null) return new Player();
 
-            depthChart.RemovePlayer(player);
-            return player;
+            var playerToRemove = depthChart.Players.FirstOrDefault(p => p.Number == player.Number);
+
+            if (playerToRemove == null) return new Player();
+
+            depthChart.RemovePlayer(playerToRemove);
+            return playerToRemove;
+
         }
 
         public List<Player> GetBackups(string teamName, string position, Player player)
