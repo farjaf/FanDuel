@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TradingSolutionsCore.Common;
 using TradingSolutionsCore.Models;
 using TradingSolutionsCore.Services;
 
@@ -6,41 +7,37 @@ namespace TradingSolutionsAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DepthChartController : ControllerBase
+    public class DepthChartController(IDepthChartService service) : ControllerBase
     {
-        private readonly IDepthChartService _service;
-
-        public DepthChartController(IDepthChartService service)
+        [HttpPost("AddPlayerToDepthChart")]
+        public IActionResult AddPlayer(string position, Player player, int? positionDepth = null)
         {
-            _service = service;
-        }
-
-        [HttpPost("AddPlayer")]
-        public IActionResult AddPlayer(string teamName, string position, Player player, int? positionDepth = null)
-        {
-            _service.AddPlayer(teamName, position, player, positionDepth);
+            service.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, position, player, positionDepth);
+            
             return Ok();
         }
 
-        [HttpDelete("RemovePlayer")]
-        public IActionResult RemovePlayer(string teamName, string position, Player player)
+        [HttpDelete("RemovePlayerFromDepthChart")]
+        public IActionResult RemovePlayer(string position, Player player)
         {
-            var removedPlayer = _service.RemovePlayer(teamName, position, player);
+            var removedPlayer = service.RemovePlayer(AppConstants.Teams.TampaBayBuccaneers, position, player);
 
             return Ok(removedPlayer);
         }
 
         [HttpGet("GetBackups")]
-        public IActionResult GetBackups(string teamName, string position, Player player)
+        public IActionResult GetBackups(string position, Player player)
         {
-            var backups = _service.GetBackups(teamName, position, player);
+            var backups = service.GetBackups(AppConstants.Teams.TampaBayBuccaneers, position, player);
+            
             return Ok(backups);
         }
 
         [HttpGet("GetFullDepthChart")]
-        public IActionResult GetFullDepthChart(string teamName)
+        public IActionResult GetFullDepthChart()
         {
-            var depthChart = _service.GetFullDepthChart(teamName);
+            var depthChart = service.GetFullDepthChart(AppConstants.Teams.TampaBayBuccaneers);
+            
             return Ok(depthChart);
         }
     }

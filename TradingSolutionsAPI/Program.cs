@@ -1,3 +1,4 @@
+using TradingSolutionsCore.Common;
 using TradingSolutionsCore.Models;
 using TradingSolutionsCore.Repositories;
 using TradingSolutionsCore.Services;
@@ -13,8 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Initialize the Sport instance and add teams
-var sport = new Sport("NFL");
-sport.AddTeam("Tampa Bay Buccaneers");
+var sport = new Sport(AppConstants.Sports.NFL);
+sport.AddTeam(AppConstants.Teams.TampaBayBuccaneers);
 
 // Register the Sport instance as a singleton
 builder.Services.AddSingleton(sport);

@@ -1,4 +1,5 @@
 using FluentAssertions;
+using TradingSolutionsCore.Common;
 using TradingSolutionsCore.Models;
 using TradingSolutionsCore.Repositories;
 using TradingSolutionsCore.Services;
@@ -8,14 +9,12 @@ namespace TradingSolutionsTests;
 public class DepthChartServiceTests
 {
     private readonly IDepthChartService _depthChartService;
-    private readonly Sport _sport;
-    private const string Team = "Tampa Bay Buccaneers";
 
     public DepthChartServiceTests()
     {
-        _sport = new Sport("NFL");
-        _sport.AddTeam(Team);
-        var repository = new DepthChartRepository(_sport);
+        var sport = new Sport("NFL");
+        sport.AddTeam(AppConstants.Teams.TampaBayBuccaneers);
+        var repository = new DepthChartRepository(sport);
         _depthChartService = new DepthChartService(repository);
     }
 
@@ -26,7 +25,7 @@ public class DepthChartServiceTests
         var player = new Player { Number = 12, Name = "Tom Brady"};
 
         // Act
-        _depthChartService.AddPlayer(Team, "QB", player, 0);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", player, 0);
 
         // Assert
         var depthChart = _depthChartService.GetFullDepthChart("Tampa Bay Buccaneers");
@@ -39,11 +38,11 @@ public class DepthChartServiceTests
         // Arrange
         var tomBrady = new Player { Number = 12, Name = "Tom Brady" };
         var blaineGabbert = new Player { Number = 11, Name = "Blaine Gabbert" };
-        _depthChartService.AddPlayer(Team, "QB", tomBrady, 0);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", tomBrady, 0);
         _depthChartService.AddPlayer("Tampa Bay Buccaneers", "QB", blaineGabbert, 1);
 
         // Act
-        var backups = _depthChartService.GetBackups(Team, "QB", tomBrady);
+        var backups = _depthChartService.GetBackups(AppConstants.Teams.TampaBayBuccaneers, "QB", tomBrady);
 
         // Assert
         Assert.Single(backups);
@@ -55,14 +54,14 @@ public class DepthChartServiceTests
     {
         // Arrange
         var player = new Player { Number = 12, Name = "Tom Brady" };
-        _depthChartService.AddPlayer(Team, "QB", player, 0);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", player, 0);
 
         // Act
-        var removedPlayer = _depthChartService.RemovePlayer(Team, "QB", player);
+        var removedPlayer = _depthChartService.RemovePlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", player);
 
         // Assert
         Assert.Equal(player, removedPlayer);
-        var depthChart = _depthChartService.GetFullDepthChart(Team);
+        var depthChart = _depthChartService.GetFullDepthChart(AppConstants.Teams.TampaBayBuccaneers);
         Assert.Empty(depthChart["QB"]);
     }
 
@@ -74,14 +73,14 @@ public class DepthChartServiceTests
         var kyleTrask = new Player { Number = 2, Name = "Kyle Trask" };
         var blaineGabbert = new Player { Number = 11, Name = "Blaine Gabbert" };
 
-        _depthChartService.AddPlayer(Team, "QB", tomBrady, 0);
-        _depthChartService.AddPlayer(Team, "QB", kyleTrask, 1);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", tomBrady, 0);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", kyleTrask, 1);
 
         // Act
-        _depthChartService.AddPlayer(Team, "QB", blaineGabbert, 0);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", blaineGabbert, 0);
 
         // Assert
-        var depthChart = _depthChartService.GetFullDepthChart(Team);
+        var depthChart = _depthChartService.GetFullDepthChart(AppConstants.Teams.TampaBayBuccaneers);
         Assert.Equal(blaineGabbert, depthChart["QB"][0]); // Blaine Gabbert should be at the top
         Assert.Equal(tomBrady, depthChart["QB"][1]); // Tom Brady should be shifted to index 1
         Assert.Equal(kyleTrask, depthChart["QB"][2]); // Kyle Trask should be shifted to index 2
@@ -94,8 +93,8 @@ public class DepthChartServiceTests
         var tomBrady = new Player { Number = 12, Name = "Tom Brady" };
 
         // Act & Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => _depthChartService.AddPlayer(Team, "QB", tomBrady, -1));
-        Assert.Throws<ArgumentOutOfRangeException>(() => _depthChartService.AddPlayer(Team, "QB", tomBrady, 1)); // No players yet, so index 1 is invalid
+        Assert.Throws<ArgumentOutOfRangeException>(() => _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", tomBrady, -1));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", tomBrady, 1)); // No players yet, so index 1 is invalid
     }
 
 
@@ -111,16 +110,16 @@ public class DepthChartServiceTests
         var JaelonDarden = new Player { Number = 1, Name = "Jaelon Darden" };
         var ScottMiller = new Player { Number = 10, Name = "Scott Miller" };
 
-        _depthChartService.AddPlayer(Team, "QB", TomBrady, 0);
-        _depthChartService.AddPlayer(Team, "QB", BlaineGabbert, 1);
-        _depthChartService.AddPlayer(Team, "QB", KyleTrask, 2);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", TomBrady, 0);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", BlaineGabbert, 1);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", KyleTrask, 2);
 
-        _depthChartService.AddPlayer(Team, "LWR", MikeEvans, 0);
-        _depthChartService.AddPlayer(Team, "LWR", JaelonDarden, 1);
-        _depthChartService.AddPlayer(Team, "LWR", ScottMiller, 2);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "LWR", MikeEvans, 0);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "LWR", JaelonDarden, 1);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "LWR", ScottMiller, 2);
 
         // Act
-        var fullDepthChart = _depthChartService.GetFullDepthChart(Team);
+        var fullDepthChart = _depthChartService.GetFullDepthChart(AppConstants.Teams.TampaBayBuccaneers);
 
         // Assert
         Assert.True(fullDepthChart.ContainsKey("QB"));
@@ -144,7 +143,7 @@ public class DepthChartServiceTests
         var expectedResult = new Player();
 
         // Act
-        var result = _depthChartService.RemovePlayer(Team, "QB", player);
+        var result = _depthChartService.RemovePlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", player);
 
         // Assert
         result.Should().BeEquivalentTo(expectedResult);
@@ -155,10 +154,10 @@ public class DepthChartServiceTests
     {
         // Arrange
         var tomBrady = new Player { Number = 12, Name = "Tom Brady" };
-        _depthChartService.AddPlayer(Team, "QB", tomBrady, 0);
+        _depthChartService.AddPlayer(AppConstants.Teams.TampaBayBuccaneers, "QB", tomBrady, 0);
 
         // Act
-        var backups = _depthChartService.GetBackups(Team, "QB", tomBrady);
+        var backups = _depthChartService.GetBackups(AppConstants.Teams.TampaBayBuccaneers, "QB", tomBrady);
 
         // Assert
         Assert.Empty(backups); // Tom Brady has no backups
@@ -171,7 +170,7 @@ public class DepthChartServiceTests
         var unknownPlayer = new Player { Number = 99, Name = "Unknown Player" };
 
         // Act
-        var backups = _depthChartService.GetBackups(Team, "QB", unknownPlayer);
+        var backups = _depthChartService.GetBackups(AppConstants.Teams.TampaBayBuccaneers, "QB", unknownPlayer);
 
         // Assert
         Assert.Empty(backups); // Unknown player is not in the depth chart

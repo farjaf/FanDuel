@@ -33,7 +33,7 @@ namespace TradingSolutionsCore.Repositories
         {
             var team = _sport.GetTeam(teamName);
             var depthChart = team.GetDepthChart(position);
-            return depthChart?.GetBackups(player) ?? new List<Player>();
+            return depthChart?.GetBackups(player) ?? [];
         }
 
         public Dictionary<string, List<Player>> GetFullDepthChart(string teamName)
