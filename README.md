@@ -3,8 +3,14 @@
 ## Overview
 
 This project is a C# .NET application that manages the depth charts of NFL teams. It provides functionality to add, remove, and retrieve players from the depth chart based on their positions.
-Currently it only allows to add for NFL team Tampa Bay Buccaneers. However, the solution is supporing additional sports and additional teams and requires slight modification inside Program.cs in TradingSolutionsAPI to add more teams and sports.
+Currently it only allows to add for NFL team Tampa Bay Buccaneers. However, the solution is supporing additional sports and additional teams.
+It is consisting of 3 Projects
 
+- TradingSolutionsAPI: Web API project with Swagger API
+- TradingSolutionsCore: Core project where the repository, service, models sits
+- TradingSolutionsTests: Unit Test project in XUnit
+
+  
 ## Prerequisites
 
 - .NET SDK (version 8.0 or higher)
