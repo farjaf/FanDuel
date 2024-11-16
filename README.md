@@ -3,8 +3,14 @@
 ## Overview
 
 This project is a C# .NET application that manages the depth charts of NFL teams. It provides functionality to add, remove, and retrieve players from the depth chart based on their positions.
-Currently it only allows to add for NFL team Tampa Bay Buccaneers. However, the solution is supporing additional sports and additional teams and requires slight modification inside Program.cs in TradingSolutionsAPI to add more teams and sports.
+Currently it only allows to add for NFL team Tampa Bay Buccaneers. However, the solution is supporing additional sports and additional teams.
+It is consisting of 3 Projects
 
+- TradingSolutionsAPI: Web API project with Swagger API
+- TradingSolutionsCore: Core project where the repository, service, models sits
+- TradingSolutionsTests: Unit Test project in XUnit
+
+  
 ## Prerequisites
 
 - .NET SDK (version 8.0 or higher)
@@ -32,22 +38,26 @@ dotnet build
 
 Select TradingSolutionsAPI as startup project and run the project. It will open swagger as below:
 
-![image](https://github.com/user-attachments/assets/685f51c6-8bf0-4c78-8c1d-aa0c2d31e6cc)
+![image](https://github.com/user-attachments/assets/1b571641-32f8-495b-96b1-1192fd9d946a)
+
+
 
 The swagger API consists of 4 APIS
 
-- AddPlayer
-- RemovePlayer
+- AddPlayerToDepthChart
+- RemovePlayerFromDepthChart
 - GetBackups
 - GetFullDepthChart
 
 To Add Player to depth chart, add details for Tom Brady:
 
-![image](https://github.com/user-attachments/assets/d22e5fbf-ae53-4097-936a-0be009aa53eb)
+![image](https://github.com/user-attachments/assets/3a04fe50-9198-42a0-abfe-080adf7bca78)
+
 
 To get full depth chart for a given team:
 
-![image](https://github.com/user-attachments/assets/b560615b-6d1b-425b-ab71-d9a2243bc941)
+![image](https://github.com/user-attachments/assets/bffc89e8-ecdd-4ce6-8c51-877e69b601fd)
+
 
 
 
